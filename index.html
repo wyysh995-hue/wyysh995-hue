@@ -1,970 +1,774 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>厦门市深智米月动欧克谷科技有限公司</title>
+    <meta name="description" content="厦门市深智米月动欧克谷科技有限公司 is a casual game company profile focused on puzzle, merge, simulation and light competitive experiences.">
+    <title>厦门市深智米月动欧克谷科技有限公司 | Casual Game Company Profile</title>
     <style>
-        /* 全局样式重置与基础设置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #7c3aed;
-            --light-color: #f8fafc;
-            --dark-color: #0f172a;
-            --gray-color: #64748b;
-            --success-color: #10b981;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --bg: #fff8ef;
+            --bg2: #f6fff8;
+            --text: #173226;
+            --muted: #547161;
+            --white: #fff;
+            --orange: #ff8a3d;
+            --orange2: #f26b1d;
+            --yellow: #ffd166;
+            --mint: #7ed7ad;
+            --green: #2d7d5b;
+            --card: rgba(255, 255, 255, 0.78);
+            --shadow: 0 24px 60px rgba(39, 66, 51, 0.14);
+            --radius: 28px;
+            --max: 1180px;
+            --ease: 0.28s ease;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: #f9fbfd;
+            font-family: "Trebuchet MS", "Avenir Next", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            line-height: 1.65;
+            background:
+                radial-gradient(circle at left top, rgba(255, 209, 102, 0.36), transparent 24%),
+                radial-gradient(circle at right top, rgba(132, 199, 255, 0.28), transparent 25%),
+                linear-gradient(180deg, var(--bg) 0%, #fffdf8 40%, var(--bg2) 100%);
             overflow-x: hidden;
         }
-        
-        /* 容器与布局 */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            display: inline-block;
-            padding-bottom: 15px;
-            position: relative;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .section-title p {
-            color: var(--gray-color);
-            margin-top: 15px;
-            font-size: 1.1rem;
-        }
-        
-        /* 页眉与导航 */
-        header {
-            background-color: white;
-            box-shadow: var(--shadow);
+        body::before {
+            content: "";
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 34px 34px;
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: -1;
         }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
+        a { color: inherit; text-decoration: none; }
+        button, input, textarea { font: inherit; }
+        .container { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+
+        .site-header { position: sticky; top: 0; z-index: 1000; padding-top: 18px; }
+        .nav-shell {
+            display: flex; align-items: center; justify-content: space-between; gap: 24px;
+            padding: 14px 18px; border-radius: 999px; background: rgba(255, 252, 246, 0.78);
+            border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 16px 38px rgba(70, 92, 81, 0.12);
+            backdrop-filter: blur(14px);
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
+        .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+        .brand-mark {
+            width: 48px; height: 48px; display: grid; place-items: center; border-radius: 18px;
+            color: var(--white); font-weight: 800; letter-spacing: 0.08em;
+            background: linear-gradient(135deg, var(--orange), #ffb84d 60%, #ffe28a);
+            box-shadow: 0 12px 24px rgba(255, 138, 61, 0.28);
         }
-        
-        .logo span {
-            color: var(--accent-color);
+        .brand-text { display: grid; line-height: 1.05; }
+        .brand-text strong {
+            max-width: 430px; font-size: 0.98rem; letter-spacing: 0.02em;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 2rem;
+        .brand-text span { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+        .nav-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+        .lang-toggle {
+            border: 1px solid rgba(23, 50, 38, 0.1); border-radius: 999px; padding: 10px 16px;
+            background: rgba(255,255,255,0.78); color: var(--text); font-weight: 700; cursor: pointer;
+            transition: background var(--ease), color var(--ease), transform var(--ease), box-shadow var(--ease);
         }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
+        .lang-toggle:hover {
+            transform: translateY(-1px); color: var(--orange2); box-shadow: 0 10px 24px rgba(70, 92, 81, 0.08);
         }
-        
-        .nav-links li {
-            margin-left: 30px;
+        .menu-btn {
+            display: none; border: none; border-radius: 999px; padding: 10px 16px; cursor: pointer;
+            background: rgba(23, 50, 38, 0.08); color: var(--text); font-weight: 700;
         }
-        
+        .nav-links { display: flex; list-style: none; gap: 10px; align-items: center; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .nav-links a:hover, 
-        .nav-links a.active {
-            color: var(--primary-color);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-color);
-            cursor: pointer;
-        }
-        
-        /* 英雄区域 */
-        .hero {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(30, 64, 175, 0.95) 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231e40af"/><path d="M0 50 L100 50 L100 100 L0 100 Z" fill="%232563eb" opacity="0.1"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 180px 20px 120px;
-            position: relative;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            word-break: break-word;
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-            border: 2px solid var(--accent-color);
-        }
-        
-        .cta-button:hover {
-            background: #6d28d9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
-        }
-        
-        .cta-secondary {
-            background: transparent;
-            border-color: white;
-            margin-left: 15px;
-        }
-        
-        .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        /* 关于我们 */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--gray-color);
-        }
-        
-        .about-stats {
-            display: flex;
-            margin-top: 30px;
-        }
-        
-        .stat-item {
-            margin-right: 30px;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-        
-        .stat-label {
-            color: var(--gray-color);
-            font-size: 0.95rem;
-        }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-        
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            opacity: 0.15;
-        }
-        
-        .about-image div {
-            height: 400px;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        
-        /* 服务 */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .service-icon {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--dark-color);
-        }
-        
-        .service-content p {
-            color: var(--gray-color);
-            margin-bottom: 15px;
-        }
-        
-        .learn-more {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-        
-        .learn-more:hover {
-            color: var(--secondary-color);
-        }
-        
-        .learn-more::after {
-            content: '→';
-            margin-left: 5px;
-            transition: var(--transition);
-        }
-        
-        .learn-more:hover::after {
-            margin-left: 10px;
-        }
-        
-        /* 联系我们 */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .contact-info {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-info h3 i {
-            margin-right: 15px;
-            font-size: 1.8rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
-        
-        .contact-icon {
-            min-width: 40px;
-            height: 40px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-        
-        .contact-text h4 {
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-        
-        .contact-text p, .contact-text a {
-            color: var(--gray-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .contact-text a:hover {
-            color: var(--primary-color);
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark-color);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .submit-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        
-        /* 页脚 */
-        footer {
-            background: var(--dark-color);
-            color: rgba(255, 255, 255, 0.85);
-            padding: 70px 0 30px;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-col h3 {
-            color: white;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-            display: block;
-            padding: 5px 0;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary-color);
-            transform: translateX(5px);
-        }
-        
-        .footer-about p {
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image div {
-                height: 350px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
+            display: inline-flex; align-items: center; justify-content: center; min-height: 42px;
+            padding: 0 16px; border-radius: 999px; color: var(--muted); font-weight: 700;
+            transition: background var(--ease), color var(--ease), transform var(--ease);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 138, 61, 0.12); color: var(--orange2); transform: translateY(-1px);
+        }
+
+        section { padding: 108px 0; }
+        .hero { padding-top: 44px; }
+        .hero-grid {
+            display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+            gap: 40px; align-items: start; min-height: calc(100vh - 136px);
+        }
+        .hero-copy { position: relative; z-index: 2; }
+        .hero-visual {
+            position: relative; padding: 24px 18px 84px; min-height: 640px;
+        }
+        .kicker {
+            display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px;
+            background: rgba(255,255,255,0.74); border: 1px solid rgba(255,255,255,0.82); box-shadow: var(--shadow);
+            color: var(--green); font-size: 0.84rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        }
+        .kicker::before {
+            content: ""; width: 10px; height: 10px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            box-shadow: 0 0 0 6px rgba(255, 138, 61, 0.14);
+        }
+        .hero h1 { margin-top: 24px; font-size: clamp(3rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.05em; }
+        .hero .hero-line { display: block; }
+        .hero .hero-line.accent { color: var(--orange2); }
+        .hero p { margin-top: 20px; max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+        .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 24px;
+            border-radius: 999px; font-weight: 800; transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn.primary {
+            color: var(--white); background: linear-gradient(135deg, var(--orange), var(--orange2));
+            box-shadow: 0 18px 30px rgba(242, 107, 29, 0.25);
+        }
+        .btn.secondary { background: rgba(255,255,255,0.78); border: 1px solid rgba(23, 50, 38, 0.08); }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 32px; }
+        .stat {
+            padding: 18px 20px; border-radius: 22px; background: rgba(255,255,255,0.76);
+            border: 1px solid rgba(255,255,255,0.88); box-shadow: 0 16px 34px rgba(56, 81, 67, 0.1);
+        }
+        .stat strong { display: block; font-size: 1.35rem; line-height: 1.1; }
+        .stat span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.92rem; }
+
+        .stage {
+            position: relative; padding: 28px; border-radius: 32px; box-shadow: var(--shadow); overflow: hidden;
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,247,237,0.78));
+            border: 1px solid rgba(255,255,255,0.92);
+            z-index: 1;
+        }
+        .stage::before, .stage::after { content: ""; position: absolute; border-radius: 50%; opacity: 0.65; }
+        .stage::before {
+            width: 180px; height: 180px; top: -40px; right: -36px;
+            background: radial-gradient(circle, rgba(255, 138, 61, 0.34), transparent 68%);
+        }
+        .stage::after {
+            width: 210px; height: 210px; left: -54px; bottom: -60px;
+            background: radial-gradient(circle, rgba(126, 215, 173, 0.4), transparent 70%);
+        }
+        .screen { position: relative; z-index: 1; display: grid; gap: 18px; }
+        .panel {
+            padding: 24px; border-radius: 26px; background: linear-gradient(180deg, #fffcf8, #fff4e7);
+            border: 1px solid rgba(255,255,255,0.92);
+        }
+        .screen-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .dots { display: flex; gap: 8px; }
+        .dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(23, 50, 38, 0.16); }
+        .dots span:first-child { background: rgba(255, 138, 61, 0.74); }
+        .dots span:nth-child(2) { background: rgba(255, 209, 102, 0.82); }
+        .chip {
+            display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border-radius: 999px;
+            background: rgba(126, 215, 173, 0.2); color: var(--green); font-size: 0.78rem; font-weight: 800;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .title-card {
+            margin-top: 18px; padding: 24px; border-radius: 26px; color: var(--white); overflow: hidden; position: relative;
+            background: linear-gradient(135deg, #2f7d5b, #4fa97b 62%, #70dfaa);
+        }
+        .title-card::after {
+            content: ""; position: absolute; width: 170px; height: 170px; right: -56px; top: -56px;
+            border-radius: 36px; background: rgba(255,255,255,0.12); transform: rotate(18deg);
+        }
+        .title-card h3 { position: relative; z-index: 1; font-size: 1.7rem; line-height: 1.05; }
+        .title-card p { position: relative; z-index: 1; margin-top: 12px; max-width: 320px; opacity: 0.92; color: rgba(255,255,255,0.92); }
+        .bar { position: relative; z-index: 1; margin-top: 18px; }
+        .bar-track { height: 12px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden; }
+        .bar-track span { display: block; width: 78%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ffcf6a, #fff7a8); }
+        .bar small { display: inline-block; margin-top: 8px; color: rgba(255,255,255,0.92); }
+        .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .mini {
+            padding: 18px; border-radius: 22px; background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(23, 50, 38, 0.08);
+        }
+        .mini strong { display: block; color: var(--muted); font-size: 0.95rem; }
+        .mini span { display: block; margin-top: 8px; font-size: 1.35rem; font-weight: 800; }
+        .float-tag {
+            position: absolute; padding: 14px 16px; border-radius: 20px; max-width: 180px; box-shadow: 0 18px 34px rgba(47, 74, 60, 0.14);
+            background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.95); animation: floatY 6s ease-in-out infinite; z-index: 2;
+        }
+        .float-tag strong { display: block; font-size: 1rem; }
+        .float-tag span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.85rem; }
+        .tag-a { top: 0; left: 0; }
+        .tag-b { right: 0; top: 214px; animation-delay: -2s; }
+        .tag-c { left: 28px; bottom: 0; animation-delay: -4s; }
+
+        .section-head { max-width: 720px; margin-bottom: 42px; }
+        .section-head span {
+            display: inline-flex; align-items: center; gap: 10px; color: var(--orange2); font-size: 0.84rem;
+            font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        }
+        .section-head span::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+        .section-head h2 { margin-top: 16px; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05; letter-spacing: -0.04em; }
+        .section-head p { margin-top: 16px; color: var(--muted); }
+
+        .grid-2 { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 24px; }
+        .card {
+            padding: 28px; border-radius: var(--radius); background: var(--card); box-shadow: 0 18px 38px rgba(58, 84, 70, 0.1);
+            border: 1px solid rgba(255,255,255,0.92); backdrop-filter: blur(14px);
+        }
+        .card h3 { font-size: 1.55rem; line-height: 1.15; }
+        .card p { margin-top: 14px; color: var(--muted); }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .tags span {
+            display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px;
+            background: rgba(255, 138, 61, 0.12); color: var(--orange2); font-size: 0.92rem; font-weight: 700;
+        }
+        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .stat-box {
+            min-height: 172px; padding: 24px; border-radius: 24px; background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,250,244,0.78));
+            box-shadow: 0 18px 36px rgba(58, 84, 70, 0.1); border: 1px solid rgba(255,255,255,0.9);
+        }
+        .stat-box strong { display: block; font-size: clamp(2rem, 4vw, 3rem); line-height: 1; color: var(--green); }
+        .stat-box h4 { margin-top: 10px; font-size: 1.05rem; }
+        .stat-box p { margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .game { padding: 0; overflow: hidden; }
+        .cover { padding: 24px; min-height: 220px; color: var(--white); position: relative; }
+        .cover.orange { background: linear-gradient(135deg, #ff9347, #ffbc59); }
+        .cover.green { background: linear-gradient(135deg, #2f8e65, #69d18f); }
+        .cover.blue { background: linear-gradient(135deg, #4b95ff, #7bd8ff); }
+        .badge {
+            display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px;
+            background: rgba(255,255,255,0.22); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .cover h3 { margin-top: 18px; font-size: 1.9rem; line-height: 1.05; }
+        .cover p { margin-top: 10px; max-width: 260px; color: rgba(255,255,255,0.92); }
+        .shape-wrap { position: absolute; right: 22px; bottom: 18px; display: grid; gap: 12px; }
+        .shape-row { display: flex; gap: 12px; justify-content: flex-end; }
+        .shape { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); border-radius: 18px; }
+        .shape.a { width: 68px; height: 68px; }
+        .shape.b { width: 118px; height: 28px; }
+        .shape.c { width: 54px; height: 54px; border-radius: 50%; }
+        .game-body { padding: 24px; }
+        .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .meta span {
+            display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px;
+            background: rgba(23, 50, 38, 0.06); font-size: 0.88rem; font-weight: 700;
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .feature small {
+            display: inline-flex; align-items: center; min-height: 34px; padding: 0 12px; border-radius: 999px;
+            background: rgba(126, 215, 173, 0.18); color: var(--green); font-size: 0.8rem; font-weight: 800;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .feature h3 { margin-top: 18px; font-size: 1.4rem; line-height: 1.15; }
+
+        .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr); gap: 22px; }
+        .list { display: grid; gap: 12px; margin-top: 22px; }
+        .list-item {
+            padding: 16px 18px; border-radius: 18px; background: rgba(255,255,255,0.56);
+        }
+        .list-item strong { display: block; margin-bottom: 6px; }
+        .info-list { display: grid; gap: 16px; margin-top: 24px; }
+        .info {
+            display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: start; padding: 18px;
+            border-radius: 20px; background: rgba(255,255,255,0.58);
+        }
+        .info strong {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 42px; border-radius: 14px;
+            background: rgba(255, 138, 61, 0.14); color: var(--orange2); font-size: 0.92rem; font-weight: 800;
+        }
+        .info span { display: block; color: var(--muted); }
+        .info a { font-weight: 700; }
+        .info a:hover { color: var(--orange2); }
+
+        .form-grid { display: grid; gap: 16px; margin-top: 22px; }
+        .field { display: grid; gap: 8px; }
+        .field label { font-weight: 700; }
+        .field input, .field textarea {
+            width: 100%; padding: 15px 16px; border-radius: 16px; border: 1px solid rgba(23, 50, 38, 0.12);
+            background: rgba(255,255,255,0.9); color: var(--text); transition: border-color var(--ease), box-shadow var(--ease);
+        }
+        .field input:focus, .field textarea:focus {
+            outline: none; border-color: rgba(242, 107, 29, 0.45); box-shadow: 0 0 0 4px rgba(255, 138, 61, 0.14);
+        }
+        .field textarea { min-height: 150px; resize: vertical; }
+        .form-status { min-height: 24px; color: var(--green); font-weight: 700; }
+
+        footer { padding: 28px 0 50px; }
+        .footer-shell {
+            display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 22px;
+            border-radius: 24px; background: rgba(23, 50, 38, 0.92); color: rgba(255,255,255,0.84);
+        }
+        .footer-shell p { font-size: 0.92rem; }
+        .footer-note { color: rgba(255,255,255,0.64); }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        @media (max-width: 1080px) {
+            .hero-grid, .grid-2, .contact-grid { grid-template-columns: 1fr; }
+            .game-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-visual { max-width: 760px; width: 100%; margin: 0 auto; min-height: auto; padding: 18px 0 0; }
+            .float-tag { position: static; max-width: none; animation: none; margin-top: 14px; }
+        }
+        @media (max-width: 860px) {
+            .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+            .nav-shell { position: relative; border-radius: 28px; }
             .nav-links {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                flex-direction: column;
-                background: white;
-                width: 80%;
-                height: calc(100vh - 80px);
-                padding: 30px;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-                transition: var(--transition);
-                z-index: 999;
+                position: absolute; top: calc(100% + 12px); right: 0; width: min(320px, 100%);
+                flex-direction: column; align-items: stretch; padding: 14px; border-radius: 28px;
+                background: rgba(255, 252, 246, 0.96); border: 1px solid rgba(255,255,255,0.9); box-shadow: var(--shadow);
+                opacity: 0; pointer-events: none; transform: translateY(-12px);
+                transition: opacity var(--ease), transform var(--ease);
             }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .hero {
-                padding: 150px 20px 100px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.3rem;
-            }
-            
-            .cta-button {
-                display: block;
-                width: 100%;
-                margin-bottom: 15px;
-            }
-            
-            .cta-secondary {
-                margin-left: 0;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .about-image div {
-                height: 300px;
-            }
+            .nav-links.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+            .nav-links a { justify-content: flex-start; padding: 14px 16px; border-radius: 18px; }
+            section { padding: 88px 0; }
+            .hero { padding-top: 34px; }
+            .hero-grid { min-height: auto; }
+            .stats, .stat-grid, .game-grid, .feature-grid, .mini-grid { grid-template-columns: 1fr; }
+            .footer-shell { flex-direction: column; align-items: flex-start; }
         }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .stat-item {
-                margin-right: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .contact-info, .contact-form {
-                padding: 25px;
-            }
+        @media (max-width: 560px) {
+            .container { width: min(calc(100% - 24px), var(--max)); }
+            .site-header { padding-top: 12px; }
+            .nav-shell { padding: 12px 14px; }
+            .brand-mark { width: 42px; height: 42px; border-radius: 16px; }
+            .brand-text strong { max-width: 190px; white-space: normal; line-height: 1.2; font-size: 0.82rem; }
+            .brand-text span { display: none; }
+            .hero h1 { font-size: 2.55rem; }
+            .btn { width: 100%; }
+            .card, .stat, .stat-box, .panel { padding: 22px; }
+            .info { grid-template-columns: 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
-    <!-- 页眉与导航 -->
-    <header>
+    <header class="site-header">
         <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <span class="logo-icon">✦</span>
-                    厦门市深智米月动欧克谷科技
+            <div class="nav-shell">
+                <a class="brand" href="#top" aria-label="Company home">
+                    <span class="brand-mark">XM</span>
+                    <span class="brand-text">
+                        <strong data-i18n="companyName">厦门市深智米月动欧克谷科技有限公司</strong>
+                        <span data-i18n="brandSubtitle">Casual Game Company Profile</span>
+                    </span>
                 </a>
-                <button class="hamburger">☰</button>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="#about">关于我们</a></li>
-                    <li><a href="#services">服务</a></li>
-                    <li><a href="#contact">联系</a></li>
-                </ul>
-            </nav>
+                <div class="nav-right">
+                    <nav>
+                        <ul class="nav-links" id="site-nav">
+                            <li><a href="#top" class="active" data-i18n="navHome">Home</a></li>
+                            <li><a href="#about" data-i18n="navAbout">About</a></li>
+                            <li><a href="#strengths" data-i18n="navStrengths">Capabilities</a></li>
+                        </ul>
+                    </nav>
+                    <button class="lang-toggle" id="lang-toggle" type="button" aria-pressed="false">中文</button>
+                    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n="menu">Menu</button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- 英雄区域 -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>厦门市深智米月动欧克谷科技有限公司</h1>
-            <p>引领智能科技未来，赋能企业数字化转型与创新发展</p>
-            <a href="#contact" class="cta-button">联系我们</a>
-            <a href="#services" class="cta-button cta-secondary">我们的服务</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero" id="top">
+            <div class="container hero-grid">
+                <div class="reveal hero-copy">
+                    <span class="kicker" data-i18n="heroKicker">Casual Game Company Profile</span>
+                    <h1>
+                        <span class="hero-line" data-i18n="heroTitle1">We build feel-good games</span>
+                        <span class="hero-line accent" data-i18n="heroTitle2">players want to reopen every day</span>
+                    </h1>
+                    <p data-i18n="heroDesc">厦门市深智米月动欧克谷科技有限公司 focuses on casual game development and long-term operations. We specialize in low-friction, high-feedback experiences across puzzle, merge, simulation and light competitive genres.</p>
+                    <div class="actions">
+                        <a class="btn primary" href="#about" data-i18n="heroCtaPrimary">About Us</a>
+                        <a class="btn secondary" href="#strengths" data-i18n="heroCtaSecondary">Capabilities</a>
+                    </div>
+                    <div class="stats">
+                        <div class="stat"><strong>12</strong><span data-i18n="stat1">live casual titles</span></div>
+                        <div class="stat"><strong>18</strong><span data-i18n="stat3">launch regions</span></div>
+                    </div>
+                </div>
+                <div class="reveal hero-visual">
+                    <div class="stage">
+                        <div class="screen">
+                            <div class="panel">
+                                <div class="screen-top">
+                                    <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                                    <span class="chip" data-i18n="stageChip">Studio Snapshot</span>
+                                </div>
+                                <div class="title-card">
+                                    <h3 data-i18n="stageTitle">Fast prototyping with long-tail live ops</h3>
+                                    <p data-i18n="stageDesc">We combine rapid gameplay validation, bright visual packaging and steady event operations to keep lightweight experiences fresh.</p>
+                                    <div class="bar">
+                                        <div class="bar-track"><span></span></div>
+                                        <small data-i18n="stageProgress">Core pipeline readiness 78%</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mini-grid">
+                                <div class="mini"><strong data-i18n="mini1Label">Day-1 retention</strong><span data-i18n="mini1Value">42%</span></div>
+                                <div class="mini"><strong data-i18n="mini2Label">Focus genres</strong><span data-i18n="mini2Value">Puzzle + Merge + Sim</span></div>
+                                <div class="mini"><strong data-i18n="mini3Label">Content cadence</strong><span data-i18n="mini3Value">Seasonal updates</span></div>
+                                <div class="mini"><strong data-i18n="mini4Label">Publishing footprint</strong><span data-i18n="mini4Value">18 global markets</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="float-tag tag-b"><strong data-i18n="bubble2Title">300+ live events</strong><span data-i18n="bubble2Desc">Seasonal, holiday and themed updates</span></div>
+                    <div class="float-tag tag-c"><strong data-i18n="bubble3Title">4-week prototype loop</strong><span data-i18n="bubble3Desc">Validate fun before scaling production</span></div>
+                </div>
+            </div>
+        </section>
 
-    <!-- 关于我们 -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>关于我们</h2>
-                <p>创新驱动未来，科技改变生活</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>深耕智能科技领域，打造行业解决方案</h3>
-                    <p>厦门市深智米月动欧克谷科技有限公司成立于2018年，总部位于美丽的海滨城市厦门。我们是一家专注于人工智能、大数据分析、云计算及物联网技术的高科技企业，致力于为各行业客户提供创新的技术解决方案和数字化转型服务。</p>
-                    <p>公司拥有一支由资深工程师、数据科学家和行业专家组成的精英团队，核心成员均来自国内外知名高校和科技企业。我们坚持"技术为本、客户至上、持续创新"的经营理念，已成功为金融、医疗、制造、零售等多个领域的数百家企业提供定制化技术服务。</p>
-                    <p>深智米月动欧克谷科技始终关注前沿技术发展，每年将超过20%的营收投入研发，与多所高校建立产学研合作，确保技术能力持续领先。我们相信，通过科技的力量，能够帮助企业提升效率、优化决策、创造更大价值。</p>
-                    
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">企业客户</span>
+        <section id="about">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span data-i18n="aboutEyebrow">About Us</span>
+                    <h2 data-i18n="aboutTitle">A studio that takes “lightweight” seriously</h2>
+                    <p data-i18n="aboutDesc">From first-session clarity to week-one return loops, we design around fragmented playtime and fast emotional payoff.</p>
+                </div>
+                <div class="grid-2">
+                    <article class="card reveal">
+                        <h3 data-i18n="aboutCardTitle">Easy to start, rewarding to revisit</h3>
+                        <p data-i18n="aboutP1">厦门市深智米月动欧克谷科技有限公司 was formed around a simple product belief: casual players still deserve polished systems, memorable visual style and well-timed rewards. We focus on removing friction without removing depth.</p>
+                        <p data-i18n="aboutP2">Our team combines planning, art, engineering, live operations and data analysis so that prototypes can be validated quickly and scaled into stable long-term products.</p>
+                        <div class="tags">
+                            <span data-i18n="aboutTag1">Puzzle & Merge</span>
+                            <span data-i18n="aboutTag2">Simulation</span>
+                            <span data-i18n="aboutTag3">Light Competitive</span>
+                            <span data-i18n="aboutTag4">Global Publishing</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">150+</span>
-                            <span class="stat-label">技术专利</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">98%</span>
-                            <span class="stat-label">客户满意度</span>
-                        </div>
+                    </article>
+                    <div class="stat-grid">
+                        <article class="stat-box reveal"><strong>70+</strong><h4 data-i18n="box1Title">cross-functional team</h4><p data-i18n="box1Desc">Design, art, engineering, live ops and analytics working in one loop.</p></article>
+                        <article class="stat-box reveal"><strong data-i18n="box2Value">4 weeks</strong><h4 data-i18n="box2Title">gameplay prototype cycle</h4><p data-i18n="box2Desc">Rapid validation of core fun, pacing and return triggers.</p></article>
+                        <article class="stat-box reveal"><strong>300+</strong><h4 data-i18n="box3Title">live event iterations</h4><p data-i18n="box3Desc">Seasonal, holiday and themed content updates across multiple titles.</p></article>
+                        <article class="stat-box reveal"><strong>42%</strong><h4 data-i18n="box4Title">day-1 retention on core titles</h4><p data-i18n="box4Desc">Built through goal clarity, readable rewards and strong first-session pacing.</p></article>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div>创新科技 · 智慧未来</div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 服务 -->
-    <section id="services" style="background-color: #f1f5f9;">
-        <div class="container">
-            <div class="section-title">
-                <h2>我们的服务</h2>
-                <p>全方位技术解决方案，助力企业数字化转型</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🧠</div>
-                    <div class="service-content">
-                        <h3>人工智能解决方案</h3>
-                        <p>提供计算机视觉、自然语言处理、机器学习等AI技术定制开发，帮助企业实现智能化升级，提升业务效率与决策能力。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
+        <section id="strengths">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span data-i18n="strengthsEyebrow">Capabilities</span>
+                    <h2 data-i18n="strengthsTitle">Four strengths built around casual-player behavior</h2>
+                    <p data-i18n="strengthsDesc">We design systems for short sessions, quick understanding and repeat motivation instead of simply shrinking mid-core formulas.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <div class="service-content">
-                        <h3>大数据分析平台</h3>
-                        <p>构建企业级数据中台，提供数据采集、清洗、分析及可视化服务，助力企业挖掘数据价值，驱动精准决策与业务增长。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <div class="service-content">
-                        <h3>云计算服务</h3>
-                        <p>提供云架构设计、迁移、运维及安全服务，帮助企业构建弹性、可靠、高效的云基础设施，降低IT成本，提升业务敏捷性。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <div class="service-content">
-                        <h3>物联网解决方案</h3>
-                        <p>设计并实施端到端物联网系统，包括传感器网络、边缘计算、平台开发及应用集成，助力传统行业实现智能化转型。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <div class="service-content">
-                        <h3>定制软件开发</h3>
-                        <p>提供全栈式软件开发服务，包括Web应用、移动应用、企业管理系统等，严格遵循敏捷开发流程，确保高质量交付。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔒</div>
-                    <div class="service-content">
-                        <h3>网络安全服务</h3>
-                        <p>提供全方位网络安全评估、防护体系建设及应急响应服务，保障企业数据资产安全，满足合规要求，防范网络威胁。</p>
-                        <a href="#" class="learn-more">了解更多</a>
-                    </div>
+                <div class="feature-grid">
+                    <article class="card feature reveal">
+                        <small data-i18n="feature1Badge">Design</small>
+                        <h3 data-i18n="feature1Title">High-frequency feedback loops</h3>
+                        <p data-i18n="feature1Desc">We refine tap feel, level objectives, reward timing and difficulty curves so the core action stays readable and satisfying within seconds.</p>
+                        <div class="tags"><span data-i18n="feature1Tag1">Fast onboarding</span><span data-i18n="feature1Tag2">Dense feedback</span></div>
+                    </article>
+                    <article class="card feature reveal">
+                        <small data-i18n="feature2Badge">Live Ops</small>
+                        <h3 data-i18n="feature2Title">Data-driven long-term updates</h3>
+                        <p data-i18n="feature2Desc">Event calendars, A/B testing and player segmentation help us keep return loops healthy while steadily optimizing retention and monetization.</p>
+                        <div class="tags"><span data-i18n="feature2Tag1">Seasonal planning</span><span data-i18n="feature2Tag2">A/B testing</span></div>
+                    </article>
+                    <article class="card feature reveal">
+                        <small data-i18n="feature3Badge">Visual</small>
+                        <h3 data-i18n="feature3Title">Friendly visual packaging</h3>
+                        <p data-i18n="feature3Desc">Bright palettes, approachable character design and clean UI make the product memorable without raising comprehension cost.</p>
+                        <div class="tags"><span data-i18n="feature3Tag1">Readable UI</span><span data-i18n="feature3Tag2">Strong identity</span></div>
+                    </article>
+                    <article class="card feature reveal">
+                        <small data-i18n="feature4Badge">Publishing</small>
+                        <h3 data-i18n="feature4Title">Multi-region release support</h3>
+                        <p data-i18n="feature4Desc">We localize themes, seasonal messaging and store assets to adapt the same game loop for different markets.</p>
+                        <div class="tags"><span data-i18n="feature4Tag1">Localization</span><span data-i18n="feature4Tag2">Store creatives</span></div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 联系我们 -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>联系我们</h2>
-                <p>期待与您携手共创智能未来</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3><span style="margin-right:10px">📍</span>公司地址</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">🏢</div>
-                        <div class="contact-text">
-                            <h4>总部地址</h4>
-                            <p>福建省厦门市思明区软件园二期观日路32号101单元</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-text">
-                            <h4>联系电话</h4>
-                            <p><a href="tel:+865925558888">+86 592 5558 888</a></p>
-                            <p><a href="tel:+865925559999">+86 592 5559 999 (技术支持)</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div class="contact-text">
-                            <h4>电子邮箱</h4>
-                            <p><a href="mailto:info@szmydokg.com">info@szmydokg.com</a></p>
-                            <p><a href="mailto:support@szmydokg.com">support@szmydokg.com (技术支持)</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">⏰</div>
-                        <div class="contact-text">
-                            <h4>工作时间</h4>
-                            <p>周一至周五 9:00 - 18:00</p>
-                            <p>周末及法定节假日休息</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 25px; color: var(--secondary-color);">发送消息</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" class="form-control" placeholder="请输入您的姓名" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">邮箱</label>
-                            <input type="email" id="email" class="form-control" placeholder="请输入您的邮箱" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">主题</label>
-                            <input type="text" id="subject" class="form-control" placeholder="请输入咨询主题" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">消息</label>
-                            <textarea id="message" class="form-control" placeholder="请输入您的咨询内容" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">发送消息</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col footer-about">
-                    <h3>深智米月动欧克谷科技</h3>
-                    <p>我们致力于通过创新的科技解决方案，帮助企业实现数字化转型，提升核心竞争力，共创智能未来。</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="微信">✎</a>
-                        <a href="#" aria-label="微博">☾</a>
-                        <a href="#" aria-label="LinkedIn">in</a>
-                        <a href="#" aria-label="GitHub">G</a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>快速链接</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">首页</a></li>
-                        <li><a href="#about">关于我们</a></li>
-                        <li><a href="#services">服务项目</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                        <li><a href="#"> Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>服务领域</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">人工智能</a></li>
-                        <li><a href="#">大数据分析</a></li>
-                        <li><a href="#">云计算服务</a></li>
-                        <li><a href="#">物联网解决方案</a></li>
-                        <li><a href="#">企业软件定制</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>法律信息</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">隐私政策</a></li>
-                        <li><a href="#">服务条款</a></li>
-                        <li><a href="#">知识产权</a></li>
-                        <li><a href="#">免责声明</a></li>
-                        <li><a href="#">合规声明</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 厦门市深智米月动欧克谷科技有限公司 版权所有 | 闽ICP备12345678号-1</p>
-                <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.7;">地址：福建省厦门市思明区软件园二期观日路32号101单元 | 电话：+86 592 5558 888</p>
+            <div class="footer-shell">
+                <p>&copy; <span id="year"></span> <span data-i18n="companyName">厦门市深智米月动欧克谷科技有限公司</span><span data-i18n="footerRights">. All rights reserved.</span></p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 简单的导航交互
-        document.addEventListener('DOMContentLoaded', function() {
-            // 汉堡菜单切换
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            
-            hamburger.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                hamburger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-            });
-            
-            // 导航链接点击关闭菜单（移动端）
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                        hamburger.textContent = '☰';
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuBtn = document.querySelector(".menu-btn");
+            const navLinks = document.querySelector(".nav-links");
+            const links = Array.from(document.querySelectorAll(".nav-links a"));
+            const sections = Array.from(document.querySelectorAll("main section"));
+            const reveals = document.querySelectorAll(".reveal");
+            const year = document.getElementById("year");
+            const langToggle = document.getElementById("lang-toggle");
+            const metaDescription = document.querySelector('meta[name="description"]');
+            const storageKey = "site-language";
+            const translations = {
+                en: {
+                    pageTitle: "厦门市深智米月动欧克谷科技有限公司 | Casual Game Company Profile",
+                    pageDescription: "厦门市深智米月动欧克谷科技有限公司 is a casual game company profile focused on puzzle, merge, simulation and light competitive experiences.",
+                    companyName: "厦门市深智米月动欧克谷科技有限公司",
+                    brandSubtitle: "Casual Game Company Profile",
+                    langToggle: "中文",
+                    menu: "Menu",
+                    close: "Close",
+                    navHome: "Home",
+                    navAbout: "About",
+                    navStrengths: "Capabilities",
+                    heroKicker: "Casual Game Company Profile",
+                    heroTitle1: "We build feel-good games",
+                    heroTitle2: "players want to reopen every day",
+                    heroDesc: "厦门市深智米月动欧克谷科技有限公司 focuses on casual game development and long-term operations. We specialize in low-friction, high-feedback experiences across puzzle, merge, simulation and light competitive genres.",
+                    heroCtaPrimary: "About Us",
+                    heroCtaSecondary: "Capabilities",
+                    stat1: "live casual titles",
+                    stat2Value: "120M+",
+                    stat3: "launch regions",
+                    stageChip: "Studio Snapshot",
+                    stageTitle: "Fast prototyping with long-tail live ops",
+                    stageDesc: "We combine rapid gameplay validation, bright visual packaging and steady event operations to keep lightweight experiences fresh.",
+                    stageProgress: "Core pipeline readiness 78%",
+                    mini1Label: "Day-1 retention",
+                    mini1Value: "42%",
+                    mini2Label: "Focus genres",
+                    mini2Value: "Puzzle + Merge + Sim",
+                    mini3Label: "Content cadence",
+                    mini3Value: "Seasonal updates",
+                    mini4Label: "Publishing footprint",
+                    mini4Value: "18 global markets",
+                    bubble1Desc: "Stable operation across core titles",
+                    bubble2Title: "300+ live events",
+                    bubble2Desc: "Seasonal, holiday and themed updates",
+                    bubble3Title: "4-week prototype loop",
+                    bubble3Desc: "Validate fun before scaling production",
+                    aboutEyebrow: "About Us",
+                    aboutTitle: "A studio that takes “lightweight” seriously",
+                    aboutDesc: "From first-session clarity to week-one return loops, we design around fragmented playtime and fast emotional payoff.",
+                    aboutCardTitle: "Easy to start, rewarding to revisit",
+                    aboutP1: "厦门市深智米月动欧克谷科技有限公司 was formed around a simple product belief: casual players still deserve polished systems, memorable visual style and well-timed rewards. We focus on removing friction without removing depth.",
+                    aboutP2: "Our team combines planning, art, engineering, live operations and data analysis so that prototypes can be validated quickly and scaled into stable long-term products.",
+                    aboutTag1: "Puzzle & Merge",
+                    aboutTag2: "Simulation",
+                    aboutTag3: "Light Competitive",
+                    aboutTag4: "Global Publishing",
+                    box1Title: "cross-functional team",
+                    box1Desc: "Design, art, engineering, live ops and analytics working in one loop.",
+                    box2Value: "4 weeks",
+                    box2Title: "gameplay prototype cycle",
+                    box2Desc: "Rapid validation of core fun, pacing and return triggers.",
+                    box3Title: "live event iterations",
+                    box3Desc: "Seasonal, holiday and themed content updates across multiple titles.",
+                    box4Title: "day-1 retention on core titles",
+                    box4Desc: "Built through goal clarity, readable rewards and strong first-session pacing.",
+                    strengthsEyebrow: "Capabilities",
+                    strengthsTitle: "Four strengths built around casual-player behavior",
+                    strengthsDesc: "We design systems for short sessions, quick understanding and repeat motivation instead of simply shrinking mid-core formulas.",
+                    feature1Badge: "Design",
+                    feature1Title: "High-frequency feedback loops",
+                    feature1Desc: "We refine tap feel, level objectives, reward timing and difficulty curves so the core action stays readable and satisfying within seconds.",
+                    feature1Tag1: "Fast onboarding",
+                    feature1Tag2: "Dense feedback",
+                    feature2Badge: "Live Ops",
+                    feature2Title: "Data-driven long-term updates",
+                    feature2Desc: "Event calendars, A/B testing and player segmentation help us keep return loops healthy while steadily optimizing retention and monetization.",
+                    feature2Tag1: "Seasonal planning",
+                    feature2Tag2: "A/B testing",
+                    feature3Badge: "Visual",
+                    feature3Title: "Friendly visual packaging",
+                    feature3Desc: "Bright palettes, approachable character design and clean UI make the product memorable without raising comprehension cost.",
+                    feature3Tag1: "Readable UI",
+                    feature3Tag2: "Strong identity",
+                    feature4Badge: "Publishing",
+                    feature4Title: "Multi-region release support",
+                    feature4Desc: "We localize themes, seasonal messaging and store assets to adapt the same game loop for different markets.",
+                    feature4Tag1: "Localization",
+                    feature4Tag2: "Store creatives",
+                    footerRights: ". All rights reserved.",
+                },
+                zh: {
+                    pageTitle: "厦门市深智米月动欧克谷科技有限公司 | 休闲游戏公司简介",
+                    pageDescription: "厦门市深智米月动欧克谷科技有限公司是一家聚焦消除、合成、经营与轻竞技体验的休闲游戏公司简介页面。",
+                    companyName: "厦门市深智米月动欧克谷科技有限公司",
+                    brandSubtitle: "休闲游戏公司简介",
+                    langToggle: "EN",
+                    menu: "菜单",
+                    close: "关闭",
+                    navHome: "首页",
+                    navAbout: "关于我们",
+                    navStrengths: "核心能力",
+                    heroKicker: "休闲游戏公司简介",
+                    heroTitle1: "我们打造轻松好上手的游戏",
+                    heroTitle2: "让玩家每天都想再打开一次",
+                    heroDesc: "厦门市深智米月动欧克谷科技有限公司专注于休闲游戏研发与长期运营，聚焦消除、合成、模拟经营与轻竞技方向，持续打造低门槛、高反馈、强回流的产品体验。",
+                    heroCtaPrimary: "关于我们",
+                    heroCtaSecondary: "核心能力",
+                    stat1: "已上线休闲产品",
+                    stat2Value: "1.2 亿+",
+                    stat3: "发行区域",
+                    stageChip: "团队概览",
+                    stageTitle: "快速原型验证与长期运营并行推进",
+                    stageDesc: "我们将玩法验证、视觉包装和版本活动运营结合起来，让轻量体验持续保持新鲜感和稳定留存。",
+                    stageProgress: "核心项目流程完成度 78%",
+                    mini1Label: "次日留存",
+                    mini1Value: "42%",
+                    mini2Label: "聚焦品类",
+                    mini2Value: "消除 + 合成 + 经营",
+                    mini3Label: "内容节奏",
+                    mini3Value: "赛季型更新",
+                    mini4Label: "发行覆盖",
+                    mini4Value: "全球 18 个市场",
+                    bubble1Desc: "核心产品保持稳定运营",
+                    bubble2Title: "300+ 次活动迭代",
+                    bubble2Desc: "覆盖节日、赛季与主题运营",
+                    bubble3Title: "4 周原型验证周期",
+                    bubble3Desc: "先验证乐趣，再放大制作规模",
+                    aboutEyebrow: "关于我们",
+                    aboutTitle: "我们认真对待“轻量体验”这件事",
+                    aboutDesc: "从第一次进入游戏的理解成本，到一周内的回流动机，我们始终围绕碎片化时间和即时反馈设计产品。",
+                    aboutCardTitle: "容易上手，也值得反复打开",
+                    aboutP1: "厦门市深智米月动欧克谷科技有限公司围绕一个简单理念组建团队：休闲玩家同样值得拥有完成度高、视觉记忆点强、奖励节奏精确的产品体验。我们做减法，但不会牺牲深度。",
+                    aboutP2: "团队覆盖策划、美术、程序、运营和数据分析，可以把玩法原型快速验证，再稳步扩展为适合长期运营的成熟产品。",
+                    aboutTag1: "消除与合成",
+                    aboutTag2: "模拟经营",
+                    aboutTag3: "轻竞技",
+                    aboutTag4: "全球发行",
+                    box1Title: "跨职能团队规模",
+                    box1Desc: "策划、美术、程序、运营和数据团队在同一循环内协同推进。",
+                    box2Value: "4 周",
+                    box2Title: "玩法原型验证周期",
+                    box2Desc: "快速验证核心乐趣、节奏控制与回流触发点。",
+                    box3Title: "活动版本迭代经验",
+                    box3Desc: "覆盖赛季、节日与主题化内容更新。",
+                    box4Title: "核心产品次日留存",
+                    box4Desc: "通过目标清晰、奖励可读和首局节奏控制来稳定回流。",
+                    strengthsEyebrow: "核心能力",
+                    strengthsTitle: "围绕休闲玩家行为建立的四项核心能力",
+                    strengthsDesc: "我们不是简单缩小中重度玩法，而是围绕短时长、快理解、强重复动机重新设计系统结构。",
+                    feature1Badge: "设计",
+                    feature1Title: "高频反馈循环设计",
+                    feature1Desc: "从点击手感、关卡目标、奖励触发到难度曲线，我们持续打磨核心循环，让玩家在几秒内就能获得明确满足感。",
+                    feature1Tag1: "引导更快",
+                    feature1Tag2: "反馈更密集",
+                    feature2Badge: "运营",
+                    feature2Title: "数据驱动的长期更新",
+                    feature2Desc: "通过活动日历、A/B 测试和用户分层，持续优化回流路径、留存表现与商业化效率。",
+                    feature2Tag1: "赛季策划",
+                    feature2Tag2: "A/B 验证",
+                    feature3Badge: "视觉",
+                    feature3Title: "友好且鲜明的视觉包装",
+                    feature3Desc: "通过明快色彩、亲和角色和清晰界面建立产品记忆点，同时保持低理解门槛。",
+                    feature3Tag1: "界面清晰",
+                    feature3Tag2: "品牌识别强",
+                    feature4Badge: "发行",
+                    feature4Title: "多区域发行支持",
+                    feature4Desc: "我们可以围绕不同市场做主题、本地化文案与商店素材调整，让同一玩法适应更多区域用户。",
+                    feature4Tag1: "本地化",
+                    feature4Tag2: "商店素材",
+                    footerRights: " 版权所有。",
+                }
+            };
+            let currentLang = "en";
+
+            if (year) year.textContent = new Date().getFullYear();
+
+            function getSavedLanguage() {
+                try {
+                    return localStorage.getItem(storageKey) || "en";
+                } catch (error) {
+                    return "en";
+                }
+            }
+
+            function saveLanguage(lang) {
+                try {
+                    localStorage.setItem(storageKey, lang);
+                } catch (error) {
+                    // Ignore storage failures in static mode.
+                }
+            }
+
+            function applyTranslations(lang) {
+                const dict = translations[lang] || translations.en;
+                currentLang = lang;
+                document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+                document.title = dict.pageTitle;
+                if (metaDescription) {
+                    metaDescription.setAttribute("content", dict.pageDescription);
+                }
+                document.querySelectorAll("[data-i18n]").forEach(function (node) {
+                    const key = node.getAttribute("data-i18n");
+                    if (dict[key] !== undefined) {
+                        node.textContent = dict[key];
                     }
                 });
-            });
-            
-            // 滚动时添加活动状态
-            const sections = document.querySelectorAll('section');
-            const navItems = document.querySelectorAll('.nav-links a');
-            
-            window.addEventListener('scroll', function() {
-                let current = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    if (pageYOffset >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
+                if (langToggle) {
+                    langToggle.textContent = dict.langToggle;
+                    langToggle.setAttribute("aria-pressed", String(lang === "zh"));
+                }
+                if (menuBtn) {
+                    const isOpen = navLinks && navLinks.classList.contains("open");
+                    menuBtn.textContent = isOpen ? dict.close : dict.menu;
+                }
+            }
+
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener("click", function () {
+                    const open = navLinks.classList.toggle("open");
+                    menuBtn.setAttribute("aria-expanded", String(open));
+                    menuBtn.textContent = translations[currentLang][open ? "close" : "menu"];
                 });
-                
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href').substring(1) === current) {
-                        item.classList.add('active');
-                    }
-                });
-            });
-            
-            // 表单提交处理
-            const contactForm = document.querySelector('.contact-form form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('感谢您的咨询！我们将尽快与您联系。');
-                    contactForm.reset();
+                links.forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        navLinks.classList.remove("open");
+                        menuBtn.setAttribute("aria-expanded", "false");
+                        menuBtn.textContent = translations[currentLang].menu;
+                    });
                 });
             }
+
+            if (langToggle) {
+                langToggle.addEventListener("click", function () {
+                    const nextLang = currentLang === "en" ? "zh" : "en";
+                    applyTranslations(nextLang);
+                    saveLanguage(nextLang);
+                });
+            }
+
+            function syncActive() {
+                let current = "top";
+                sections.forEach(function (section) {
+                    if (window.scrollY >= section.offsetTop - 140) current = section.id;
+                });
+                links.forEach(function (link) {
+                    link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+                });
+            }
+
+            syncActive();
+            window.addEventListener("scroll", syncActive, { passive: true });
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(function (entries, inst) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            inst.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+                reveals.forEach(function (item) { observer.observe(item); });
+            } else {
+                reveals.forEach(function (item) { item.classList.add("visible"); });
+            }
+
+            applyTranslations(translations[getSavedLanguage()] ? getSavedLanguage() : "en");
         });
     </script>
 </body>
